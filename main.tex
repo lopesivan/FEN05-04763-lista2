@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{%
+  Tópicos Especiais em Eletrônica\\
+  \large Lista 2\\
+    Resolução}
+
+\author{Ivan Carlos}
+\date{October 2021}
+
+\usepackage{natbib}
+\usepackage{amsmath}  % matemática
+\usepackage{amssymb}
+
+\usepackage{blindtext} % links
+\usepackage{hyperref}  % links
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+
+\usepackage{color}    % suporte a cor
+\usepackage{xcolor}
+\input{etc/lstlisting.tex}
+\input{etc/color.tex}
+
+%\usepackage{auto-pst-pdf} % ps
+
+\usepackage{epstopdf}
+\usepackage{pstricks} 
+\usepackage{pst-plot}
+\usepackage{pstricks-add}
+\usepackage{epsf}
+
+
+%\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% mudando o idioma em listing -> Listagem
+\renewcommand{\lstlistingname}{Listagem}
+%\renewcommand{\lstlistingname}{Algorithm}
+%\renewcommand{\lstlistlistingname}{Lista de Códigos Fonte}
+
+% desabilita seções numeradas
+\setcounter{secnumdepth}{0} % Do not enumerate a section
+
+\begin{document}
+
+\maketitle
+
+\section{a)}
+
+O primeiro passo é escrever nossa função abaixo.
+
+\begin{equation} \label{eq1}
+    F6(x,y) = 0.5-\frac{(\sin\sqrt{x^2+y^2})^2 -0.5}{(1+(0.0001)\cdot (x^2+y^2)))^2}
+\end{equation}
+
+No Matlab como uma abordagem inicial, escrevemos a função lembrando que as entradas e saídas são vetoriais. Não é uma função difícil de ser expressa, mas devemos tomar cuidado com a operações ponto a ponto (``.*'', ``./''). 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.3]{fun.png}
+\caption{Modelo da função F6}
+\label{fig:func_f6_model}
+\end{figure}
+
+Dentro do diretório de trabalho criamos o arquivo ``F6.m'', conforme mostrado abaixo.
+
+\lstinputlisting[label={F6},caption={Arquivo F6.m}, language={Matlab}]{code/F6.m}
+
+Para invocar a função basicamente digitamos \emph{F6} munido de suas entradas.
+
+Dessa forma testamos as entradas $X=0, Y=0$ mencionadas no item e verificamos se a saída é $Z=1$.
+
+\lstinputlisting[label={prompt1},caption={Prompt de comando rodando F6(0,0)}, language={Matlab}]{code/prompt1.m}
+
+Após essa análise inicial, voltamos a nossa função \emph{F6}, mas levando em consideração que esta possui uma quantidade elevada de picos e vales no $\mathbb{R}^3$ necessitando de pelo menos três abordagens para plotar essa função com os recursos presentes no matlab.
+
+\subsection*{Primeira abordagem: plotando pontos em intervalos discretos}
+
+Definimos x e y como arrays que definem a faixa de intervalo $[-100..100]$ ao passo de $.5$ por exemplo.
+
+
+\lstinputlisting[label={plot1},caption={Plot 1}, language={Matlab}]{code/myplot1.m}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{myplot1.pdf}
+\caption{Plot 1}
+\label{fig:plot1_f6}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{myplot1b.pdf}
+\caption{Plot 1 visualizando os 3 eixos}
+\label{fig:plot1b_f6}
+\end{figure}
+
+
+\subsection*{Segunda abordagem: plotando pontos em intervalos discretos com redução do intervalo e um aumento substancial de pontos}
+
+Definimos x e y como arrays que definem a faixa de intervalo $[-1..1]$ ao passo de $.00005$ por exemplo.
+
+
+\lstinputlisting[label={plot2},caption={Plot 2}, language={Matlab}]{code/myplot2.m}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{myplot2.pdf}
+\caption{Plot 2}
+\label{fig:plot2_f6}
+\end{figure}
+
+Definitivamente essa metodologia não diz muito sobre os picos e vales de nossa função \emph{F6}, os unicos pontos positívos até o momento é a observação da sua faixa de relevância e que o ponto de máximo se encontra na vizinhança do ponto $(0,0,z)$.
+
+\subsection*{Terceira abordagem: plotando a função como uma curva de superfície em intervalos discretos com redução do intervalo de relevância}
+
+%Definimos x e y como arrays que definem a faixa de intervalo $[-1..1]$ ao passo de $.00005$ por exemplo.
+
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
