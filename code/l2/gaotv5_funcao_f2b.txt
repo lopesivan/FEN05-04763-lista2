@@ -1,0 +1,16 @@
+Toolbox gaotv5
+==============
+
+A função f2b.m está definida de forma errada e dá problema no MATLAB 6 (acho q é 6).
+
+A definição dela está assim:
+
+function [bval] = function(fval,bounds,bits)
+
+e deveria ser assim:
+
+function [bval] = f2b(fval,bounds,bits)
+
+
+Parece que basta corrigir isto para o gaotv5 funcionar nesta versão de MATLAB.
+
