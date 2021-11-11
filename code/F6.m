@@ -1,4 +1,5 @@
 % function implementation
+%  Minha função implementada é a de um sistema de equações lineares
 % z = f(x,y)
 function z = F6(x,y)
     n = (sin(sqrt(x.^ 2 + y.^ 2)).^ 2 - 0.5);
