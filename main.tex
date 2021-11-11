@@ -31,7 +31,7 @@
 %\usepackage{auto-pst-pdf} % ps
 
 \usepackage{epstopdf}
-\usepackage{pstricks} 
+\usepackage{pstricks}
 \usepackage{pst-plot}
 \usepackage{pstricks-add}
 \usepackage{epsf}
@@ -59,38 +59,66 @@ O primeiro passo é escrever nossa função abaixo.
     F6(x,y) = 0.5-\frac{(\sin\sqrt{x^2+y^2})^2 -0.5}{(1+(0.0001)\cdot (x^2+y^2)))^2}
 \end{equation}
 
-No Matlab como uma abordagem inicial, escrevemos a função lembrando que as entradas e saídas são vetoriais. Não é uma função difícil de ser expressa, mas devemos tomar cuidado com a operações ponto a ponto (``.*'', ``./''). 
+No Matlab como uma abordagem inicial, escrevemos a função
+lembrando que as entradas e saídas são vetoriais. Não é uma
+função difícil de ser expressa, mas devemos tomar cuidado com a
+operações ponto a ponto (``.*'', ``./'').
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=.3]{fun.png}
+\includegraphics[scale=.3]{images/fun.png}
 \caption{Modelo da função F6}
 \label{fig:func_f6_model}
 \end{figure}
 
-Dentro do diretório de trabalho criamos o arquivo ``F6.m'', conforme mostrado abaixo.
+Dentro do diretório de trabalho criamos o arquivo ``F6.m'',
+conforme mostrado abaixo.
 
 \lstinputlisting[label={F6},caption={Arquivo F6.m}, language={Matlab}]{code/F6.m}
 
-Para invocar a função basicamente digitamos \emph{F6} munido de suas entradas.
+Para invocar a função basicamente digitamos \emph{F6} munido de
+suas entradas.
 
-Dessa forma testamos as entradas $X=0, Y=0$ mencionadas no item e verificamos se a saída é $Z=1$.
+Dessa forma testamos as entradas $X=0, Y=0$ mencionadas no item
+e verificamos se a saída é $Z=1$.
 
 \lstinputlisting[label={prompt1},caption={Prompt de comando rodando F6(0,0)}, language={Matlab}]{code/prompt1.m}
 
-Após essa análise inicial, voltamos a nossa função \emph{F6}, mas levando em consideração que esta possui uma quantidade elevada de picos e vales no $\mathbb{R}^3$ necessitando de pelo menos três abordagens para plotar essa função com os recursos presentes no matlab.
+Após essa análise inicial, voltamos a nossa função \emph{F6},
+mas levando em consideração que esta possui uma quantidade
+elevada de picos e vales no $\mathbb{R}^3$ necessitando de pelo
+menos três abordagens para plotar essa função com os recursos
+presentes no matlab.
 
+Mas antes de começão a análise com o matlab jogamos a função no Wolfram para entender o que nós espera.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{images/wolfram2.jpeg}
+\caption{Equação}
+\label{fig:wolfram_2}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{images/wolfram1.jpeg}
+\caption{Gráfico}
+\label{fig:wolfram_1}
+\end{figure}
+
+
+\newpage
 \subsection*{Primeira abordagem: plotando pontos em intervalos discretos}
 
-Definimos x e y como arrays que definem a faixa de intervalo $[-100..100]$ ao passo de $.5$ por exemplo.
+Definimos x e y como arrays que definem a faixa de intervalo
+$[-100..100]$ ao passo de $.5$ por exemplo.
 
 
 \lstinputlisting[label={plot1},caption={Plot 1}, language={Matlab}]{code/myplot1.m}
 
-\newpage
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=.5]{myplot1.pdf}
+\includegraphics[scale=.3]{images/myplot1.pdf}
 \caption{Plot 1}
 \label{fig:plot1_f6}
 \end{figure}
@@ -98,15 +126,17 @@ Definimos x e y como arrays que definem a faixa de intervalo $[-100..100]$ ao pa
 \newpage
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=.5]{myplot1b.pdf}
+\includegraphics[scale=.3]{images/myplot1b.pdf}
 \caption{Plot 1 visualizando os 3 eixos}
 \label{fig:plot1b_f6}
 \end{figure}
 
 
+\newpage
 \subsection*{Segunda abordagem: plotando pontos em intervalos discretos com redução do intervalo e um aumento substancial de pontos}
 
-Definimos x e y como arrays que definem a faixa de intervalo $[-1..1]$ ao passo de $.00005$ por exemplo.
+Definimos x e y como arrays que definem a faixa de intervalo
+$[-1..1]$ ao passo de $.00005$ por exemplo.
 
 
 \lstinputlisting[label={plot2},caption={Plot 2}, language={Matlab}]{code/myplot2.m}
@@ -114,20 +144,96 @@ Definimos x e y como arrays que definem a faixa de intervalo $[-1..1]$ ao passo 
 \newpage
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=.5]{myplot2.pdf}
+\includegraphics[scale=.5]{images/myplot2.pdf}
 \caption{Plot 2}
 \label{fig:plot2_f6}
 \end{figure}
 
-Definitivamente essa metodologia não diz muito sobre os picos e vales de nossa função \emph{F6}, os unicos pontos positívos até o momento é a observação da sua faixa de relevância e que o ponto de máximo se encontra na vizinhança do ponto $(0,0,z)$.
+Definitivamente essa metodologia não diz muito sobre os picos e
+vales de nossa função \emph{F6}, os unicos pontos positívos até
+o momento é a observação da sua faixa de relevância e que o
+ponto de máximo se encontra na vizinhança do ponto $(0,0,z)$.
 
-\subsection*{Terceira abordagem: plotando a função como uma curva de superfície em intervalos discretos com redução do intervalo de relevância}
+\newpage
+\subsection*{Terceira abordagem: plotando a função como uma curva de superfície em formato de malha em intervalos discretos com redução do intervalo de relevância}
 
-%Definimos x e y como arrays que definem a faixa de intervalo $[-1..1]$ ao passo de $.00005$ por exemplo.
+Mantemos o intervalo de relevância entre $[-100,100]$, todavia mantendo o número de pontos em torno de 1000 pontos.
+
+$x = linspace(-100, 100, 1000);$
+
+\lstinputlisting[label={plot3},caption={Plot 3}, language={Matlab}]{code/myplot3.m}
+
+\newpage
+Mesmo com essa nova forma de calcular os pontos e conectar os pequenos planos, ``mesh'' ou grades, não ficou claro conforme é visto no gráfico abaixo os máximos e mínimos de \emph{F6}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{images/myplot3.pdf}
+\caption{$X,Y \in [-100, 100]$}
+\label{fig:plot3_f6}
+\end{figure}
+
+Nesse ponto reduzimos o intervalo de relevância, o domínio, de forma drástica para $[-1,1]$ e mantemos o número de pontos em torno de 1000 pontos.
+
+$x = linspace(-1, 1, 1000);$
+
+\lstinputlisting[label={plot4},caption={Plot 4}, language={Matlab}]{code/myplot4.m}
+
+\newpage
+Mesmo seguindo essas dicas, não obtivemos sucesso na análise gráfica.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{images/myplot4.pdf}
+\caption{$X,Y \in [-1, 1]$}
+\label{fig:plot4_f6}
+\end{figure}
+
+Sendo menos preciosista e após vários testes chegamos a uma possível interpretação da curva de superfície com o algorítmos subsequente. Para tanto alteramos o domíneo até o ponto desse ser mais substancialmente indicativo da estrutura espacial de \emph{F6}.
+
+\lstinputlisting[label={plot5},caption={Plot 5}, language={Matlab}]{code/myplot5.m}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{images/myplot5a.pdf}
+%\includegraphics[ width=\textwidth, keepaspectratio, ]{images/myplot5a.pdf}
+\caption{$X,Y \in [-5, 5]$}
+\label{fig:plot5a_f6}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{images/myplot5b.pdf}
+\caption{$X,Y \in [-10, 10]$}
+\label{fig:plot5b_f6}
+\end{figure}
+
+\newpage
+Sendo assim, podemos afirmar que \emph{F6} possui vários máximos locais e ou ótimos locais.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.5]{images/myplot5c.pdf}
+\caption{$X,Y \in [-20, 20]$}
+\label{fig:plot5c_f6}
+\end{figure}
+
+\newpage
+\section*{b)}
+
+Baseando-se no exemplo fornecido no gaot (binaryExample.m),
+implemente um programa baseado em GA (GA1) para maximizar a
+função f6 com as seguintes características:
+
+Antes de mais nada, precisamos instalar a biblioteca no matlab,
+no nosso caso consiste em adicionar a pasta no caminho de
+leitura do programa, conforme mostrado abaixo.
+
+\lstinputlisting[label={prompt2},caption={Instalando biblioteca gaot}, language={Matlab}]{code/prompt2.m}
 
 
-
-\bibliographystyle{plain}
-\bibliography{references}
+%\bibliographystyle{plain}
+%\bibliography{references}
 
 \end{document}
