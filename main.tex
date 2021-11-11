@@ -159,21 +159,28 @@ $[-100..100]$ ao passo de $.5$ por exemplo.
 \begin{flushleft}
 	Definitivamente essa metodologia não diz muito sobre os picos e
 	vales de nossa função \emph{F6}, os unicos pontos positívos até
-	o momento é a observação da sua faixa de relevância e que o
+	o momento são a observação da sua faixa de relevância e que o
 	ponto de máximo se encontra na vizinhança do ponto $(0,0,z)$.
 \end{flushleft}
 
 \newpage
 \subsection*{Terceira abordagem: plotando a função como uma curva de superfície em formato de malha em intervalos discretos com redução do intervalo de relevância}
 
-Mantemos o intervalo de relevância entre $[-100,100]$, todavia mantendo o número de pontos em torno de 1000 pontos.
+\begin{flushleft}
+	Mantemos o intervalo de relevância entre $[-100,100]$, todavia
+	mantendo o número de pontos em torno de 1000 pontos.
+\end{flushleft}
 
 $x = linspace(-100, 100, 1000);$
 
 \lstinputlisting[label={plot3},caption={Plot 3}, language={Matlab}]{code/myplot3.m}
 
 \newpage
-Mesmo com essa nova forma de calcular os pontos e conectar os pequenos planos, ``mesh'' ou grades, não ficou claro conforme é visto no gráfico abaixo os máximos e mínimos de \emph{F6}.
+\begin{flushleft}
+	Mesmo com essa nova forma de calcular os pontos e conectar os
+	pequenos planos, ``mesh'' ou grades, não ficou claro conforme é
+	visto no gráfico abaixo os máximos e mínimos de \emph{F6}.
+\end{flushleft}
 
 \begin{figure}[h!]
 \centering
