@@ -36,11 +36,16 @@
 \usepackage{pstricks-add}
 \usepackage{epsf}
 
+\usepackage{graphicx}
+\usepackage{subcaption}
+%\pagestyle{empty}
+
+\usepackage{floatrow}%
 
 %\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 
 % mudando o idioma em listing -> Listagem
-\renewcommand{\lstlistingname}{Listagem}
+\renewcommand{\lstlistingname}{Algorítmo}
 %\renewcommand{\lstlistingname}{Algorithm}
 %\renewcommand{\lstlistlistingname}{Lista de Códigos Fonte}
 
@@ -59,11 +64,6 @@ O primeiro passo é escrever nossa função abaixo.
     F6(x,y) = 0.5-\frac{(\sin\sqrt{x^2+y^2})^2 -0.5}{(1+(0.0001)\cdot (x^2+y^2)))^2}
 \end{equation}
 
-No Matlab como uma abordagem inicial, escrevemos a função
-lembrando que as entradas e saídas são vetoriais. Não é uma
-função difícil de ser expressa, mas devemos tomar cuidado com a
-operações ponto a ponto (``.*'', ``./'').
-
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=.3]{images/fun.png}
@@ -71,48 +71,54 @@ operações ponto a ponto (``.*'', ``./'').
 \label{fig:func_f6_model}
 \end{figure}
 
+\begin{flushleft}
 Dentro do diretório de trabalho criamos o arquivo ``F6.m'',
 conforme mostrado abaixo.
+\end{flushleft}
 
 \lstinputlisting[label={F6},caption={Arquivo F6.m}, language={Matlab}]{code/F6.m}
-
+\begin{flushleft}
 Para invocar a função basicamente digitamos \emph{F6} munido de
 suas entradas.
 
 Dessa forma testamos as entradas $X=0, Y=0$ mencionadas no item
 e verificamos se a saída é $Z=1$.
+\end{flushleft}
 
 \lstinputlisting[label={prompt1},caption={Prompt de comando rodando F6(0,0)}, language={Matlab}]{code/prompt1.m}
 
+\begin{flushleft}
 Após essa análise inicial, voltamos a nossa função \emph{F6},
 mas levando em consideração que esta possui uma quantidade
 elevada de picos e vales no $\mathbb{R}^3$ necessitando de pelo
 menos três abordagens para plotar essa função com os recursos
-presentes no matlab.
+presentes no MATLAB\cite{MATLAB:2020b}.
 
-Mas antes de começão a análise com o matlab jogamos a função no Wolfram para entender o que nós espera.
+%@online{WolframAlpha,
+%@manual{MATLAB:2020b,
+%
 
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=.5]{images/wolfram2.jpeg}
-\caption{Equação}
-\label{fig:wolfram_2}
+Mas antes de começar a análise com o matlab jogamos a função no
+WolframAlpha\cite{WolframAlpha} para entender o que nós espera.
+\end{flushleft}
+
+\begin{figure}[!h]
+	\begin{floatrow}
+		\ffigbox{\includegraphics[scale = 0.8]{images/wolfram2.jpeg}}{
+			\caption{Equação}
+			\label{fig_wolfram:a}}
+
+		\ffigbox{\includegraphics[scale = 0.8]{images/wolfram1.jpeg}}{
+			\caption{WolframAlpha\cite{WolframAlpha}}
+			\label{fig_wolfram:b}}
+	\end{floatrow}
 \end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=.5]{images/wolfram1.jpeg}
-\caption{Gráfico}
-\label{fig:wolfram_1}
-\end{figure}
-
 
 \newpage
 \subsection*{Primeira abordagem: plotando pontos em intervalos discretos}
 
 Definimos x e y como arrays que definem a faixa de intervalo
 $[-100..100]$ ao passo de $.5$ por exemplo.
-
 
 \lstinputlisting[label={plot1},caption={Plot 1}, language={Matlab}]{code/myplot1.m}
 
@@ -135,9 +141,10 @@ $[-100..100]$ ao passo de $.5$ por exemplo.
 \newpage
 \subsection*{Segunda abordagem: plotando pontos em intervalos discretos com redução do intervalo e um aumento substancial de pontos}
 
-Definimos x e y como arrays que definem a faixa de intervalo
-$[-1..1]$ ao passo de $.00005$ por exemplo.
-
+\begin{flushleft}
+	Definimos x e y como arrays que definem a faixa de intervalo
+	$[-1..1]$ ao passo de $.00005$ por exemplo.
+\end{flushleft}
 
 \lstinputlisting[label={plot2},caption={Plot 2}, language={Matlab}]{code/myplot2.m}
 
@@ -149,10 +156,12 @@ $[-1..1]$ ao passo de $.00005$ por exemplo.
 \label{fig:plot2_f6}
 \end{figure}
 
-Definitivamente essa metodologia não diz muito sobre os picos e
-vales de nossa função \emph{F6}, os unicos pontos positívos até
-o momento é a observação da sua faixa de relevância e que o
-ponto de máximo se encontra na vizinhança do ponto $(0,0,z)$.
+\begin{flushleft}
+	Definitivamente essa metodologia não diz muito sobre os picos e
+	vales de nossa função \emph{F6}, os unicos pontos positívos até
+	o momento é a observação da sua faixa de relevância e que o
+	ponto de máximo se encontra na vizinhança do ponto $(0,0,z)$.
+\end{flushleft}
 
 \newpage
 \subsection*{Terceira abordagem: plotando a função como uma curva de superfície em formato de malha em intervalos discretos com redução do intervalo de relevância}
@@ -233,7 +242,7 @@ leitura do programa, conforme mostrado abaixo.
 \lstinputlisting[label={prompt2},caption={Instalando biblioteca gaot}, language={Matlab}]{code/prompt2.m}
 
 
-%\bibliographystyle{plain}
-%\bibliography{references}
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
