@@ -137,7 +137,6 @@ $[-100..100]$ ao passo de $.5$ por exemplo.
 \label{fig:plot1b_f6}
 \end{figure}
 
-
 \newpage
 \subsection*{Segunda abordagem: plotando pontos em intervalos discretos com redução do intervalo e um aumento substancial de pontos}
 
@@ -239,23 +238,6 @@ $x = linspace(-1, 1, 1000);$
 	\end{floatrow}
 \end{figure}
 
-
-%\newpage
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale=.6]{images/myplot5a.pdf}
-%%\includegraphics[ width=\textwidth, keepaspectratio, ]{images/myplot5a.pdf}
-%\caption{$X,Y \in [-5, 5]$}
-%\label{fig:plot5a_f6}
-%\end{figure}
-
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale=.5]{images/myplot5b.pdf}
-%\caption{$X,Y \in [-10, 10]$}
-%\label{fig:plot5b_f6}
-%\end{figure}
-
 \newpage
 \begin{flushleft}
 	\textcolor{black}{
@@ -284,13 +266,40 @@ $x = linspace(-1, 1, 1000);$
 	implemente um programa baseado em GA (GA1) para maximizar a
 	função f6 com as seguintes características:
 
-	Antes de mais nada, precisamos instalar a biblioteca no matlab,
-	no nosso caso consiste em adicionar a pasta no caminho de
-	leitura do programa, conforme mostrado abaixo.
+	\begin{itemize}
+		\item representação binária (binário codificando real);
+		\item domínio de x e y $[-100, 100]$;
+		\item epsilon = $1e-06$ (precisão);
+		\item aptidão é a avaliação;
+		\item População = $100$;
+		\item Total de indivíduos = $40.000$;
+		\item Taxa de Crossover = 80\%;
+		\item Taxa de Mutação = 1\%;
+		\item função de seleção (\emph{roulette weel})
+	\end{itemize}
+
+	Antes de mais nada, precisamos instalar a biblioteca no
+	MATLAB\cite{MATLAB:2020b}, no nosso caso consiste em
+	adicionar a pasta no caminho de leitura do programa,
+	conforme mostrado abaixo.
 \end{flushleft}
 
 \lstinputlisting[label={prompt2},caption={Instalando biblioteca gaot}, language={Matlab}]{code/prompt2.m}
 
+\begin{flushleft}
+	Reescrevemos a função \emph{F6} para que ela seja compatível
+	com a biblioteca \emph{GAOT}.
+\end{flushleft}
+
+\lstinputlisting[label={NewF6},caption={Reimplementação de F6}, language={Matlab}]{code/l2/F6.m}
+
+\begin{flushleft}
+	Implementamos abaixo, o maximizador de \emph{F6} escrevendo
+	o programa ``maximizaF6.m'' seguindo o modelo apresentado no
+	exemplo ``binaryExample.m''.
+\end{flushleft}
+
+\lstinputlisting[label={prog1},caption={Realiza Maximização da função \emph{F6}}, language={Matlab}]{code/l2/maximizaF6.m}
 
 \bibliographystyle{plain}
 \bibliography{references}
