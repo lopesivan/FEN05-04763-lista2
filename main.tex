@@ -40,7 +40,9 @@
 \usepackage{subcaption}
 %\pagestyle{empty}
 
-\usepackage{floatrow}%
+\usepackage{floatrow}% images
+
+\usepackage[numbered,framed]{matlab-prettifier}
 
 %\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 
@@ -76,7 +78,7 @@ Dentro do diretório de trabalho criamos o arquivo ``F6.m'',
 conforme mostrado abaixo.
 \end{flushleft}
 
-\lstinputlisting[label={F6},caption={Arquivo F6.m}, language={Matlab}]{code/F6.m}
+\lstinputlisting[style=Matlab-editor,label={F6},caption={Arquivo F6.m}, language={Matlab}]{code/F6.m}
 \begin{flushleft}
 Para invocar a função basicamente digitamos \emph{F6} munido de
 suas entradas.
@@ -85,7 +87,7 @@ Dessa forma testamos as entradas $X=0, Y=0$ mencionadas no item
 e verificamos se a saída é $Z=1$.
 \end{flushleft}
 
-\lstinputlisting[label={prompt1},caption={Prompt de comando rodando F6(0,0)}, language={Matlab}]{code/prompt1.m}
+\lstinputlisting[style=Matlab-editor,label={prompt1},caption={Prompt de comando rodando F6(0,0)}, language={Matlab}]{code/prompt1.m}
 
 \begin{flushleft}
 Após essa análise inicial, voltamos a nossa função \emph{F6},
@@ -120,7 +122,7 @@ WolframAlpha\cite{WolframAlpha} para entender o que nós espera.
 Definimos x e y como arrays que definem a faixa de intervalo
 $[-100..100]$ ao passo de $.5$ por exemplo.
 
-\lstinputlisting[label={plot1},caption={Plot 1}, language={Matlab}]{code/myplot1.m}
+\lstinputlisting[style=Matlab-editor,label={plot1},caption={Plot 1}, language={Matlab}]{code/myplot1.m}
 
 \begin{figure}[h!]
 \centering
@@ -145,7 +147,7 @@ $[-100..100]$ ao passo de $.5$ por exemplo.
 	$[-1..1]$ ao passo de $.00005$ por exemplo.
 \end{flushleft}
 
-\lstinputlisting[label={plot2},caption={Plot 2}, language={Matlab}]{code/myplot2.m}
+\lstinputlisting[style=Matlab-editor,label={plot2},caption={Plot 2}, language={Matlab}]{code/myplot2.m}
 
 \newpage
 \begin{figure}[h!]
@@ -172,7 +174,7 @@ $[-100..100]$ ao passo de $.5$ por exemplo.
 
 $x = linspace(-100, 100, 1000);$
 
-\lstinputlisting[label={plot3},caption={Plot 3}, language={Matlab}]{code/myplot3.m}
+\lstinputlisting[style=Matlab-editor,label={plot3},caption={Plot 3}, language={Matlab}]{code/myplot3.m}
 
 \newpage
 \begin{flushleft}
@@ -196,7 +198,7 @@ $x = linspace(-100, 100, 1000);$
 
 $x = linspace(-1, 1, 1000);$
 
-\lstinputlisting[label={plot4},caption={Plot 4}, language={Matlab}]{code/myplot4.m}
+\lstinputlisting[style=Matlab-editor,label={plot4},caption={Plot 4}, language={Matlab}]{code/myplot4.m}
 
 \newpage
 \begin{flushleft}
@@ -219,7 +221,7 @@ $x = linspace(-1, 1, 1000);$
 	\emph{F6}.
 \end{flushleft}
 
-\lstinputlisting[label={plot5},caption={Plot 5}, language={Matlab}]{code/myplot5.m}
+\lstinputlisting[style=Matlab-editor,label={plot5},caption={Plot 5}, language={Matlab}]{code/myplot5.m}
 
 \newpage
 \begin{figure}[H]
@@ -284,14 +286,14 @@ $x = linspace(-1, 1, 1000);$
 	conforme mostrado abaixo.
 \end{flushleft}
 
-\lstinputlisting[label={prompt2},caption={Instalando biblioteca gaot}, language={Matlab}]{code/prompt2.m}
+\lstinputlisting[style=Matlab-editor,label={prompt2},caption={Instalando biblioteca gaot}, language={Matlab}]{code/prompt2.m}
 
 \begin{flushleft}
 	Reescrevemos a função \emph{F6} para que ela seja compatível
 	com a biblioteca \emph{GAOT}.
 \end{flushleft}
 
-\lstinputlisting[label={NewF6},caption={Reimplementação de F6}, language={Matlab}]{code/l2/F6.m}
+\lstinputlisting[style=Matlab-editor,label={NewF6},caption={Reimplementação de F6}, language={Matlab}]{code/l2/F6.m}
 
 \begin{flushleft}
 	Implementamos abaixo, o maximizador de \emph{F6} escrevendo
@@ -299,7 +301,132 @@ $x = linspace(-1, 1, 1000);$
 	exemplo ``binaryExample.m''.
 \end{flushleft}
 
-\lstinputlisting[label={prog1},caption={Realiza Maximização da função \emph{F6}}, language={Matlab}]{code/l2/maximizaF6.m}
+\lstinputlisting[style=Matlab-editor,label={prog1},caption={Realiza Maximização da função \emph{F6}}, language={Matlab}]{code/l2/maximizaF6.m}
+
+\begin{flushleft}
+	Após rodar o programa teremos a seguinte saída:
+\end{flushleft}
+
+\begin{equation}
+\begin{split}
+	x &= -3.7253e-07 = -3.7253*10^{-7} = -0.0000003725 \\
+	y &= -2.0675e-04 = -2.0675*10^{-4} = 0.0002067500 \\
+	z &= 1.000000
+\end{split}
+\end{equation}
+
+\lstinputlisting[label={output},linerange={33-38},caption={Saida do programa \emph{maximizaF6.m}}, language={Matlab}]{code/l2/maximizaF6.out}
+
+\begin{flushleft}
+	Nossa resposta corresponde exatamente a proposição inicial,
+	onde x e y estão no entrorno de $(0,0)$ e $z = 1$. Conforme
+	verificamos mais de uma vez ao efetuarmos $F6(0,0)$ e
+	confirmar que tem imagem de valor 1.
+\end{flushleft}
+
+\newpage
+\section*{b.1)}
+\begin{flushleft}
+	Quantos bits tem o cromossomo? Explique.
+
+	Utilizando o programa \emph{maximizaF6.m} obtemos um total de 28 bits.
+	Um binário também pode representar um número real $X_{R}$
+	$[X_{min}X_{máx}]$, com precisão de p casas decimais. Para isso são
+	necessários K bits, sendo K calculado pela inequação:
+	\begin{equation}
+	\begin{split}
+		2^{K} &\leq (X_{max}-X_{min})\times 10^{p}\\
+		\Rightarrow & log (2^{K}) \leq log ((X_{max}-X_{min})\times 10^{p}) \\
+		\Rightarrow & log (2^{K}) \leq log ((100-(-100))\times 10^{6}) \\
+		\Rightarrow & log (2^{K}) \leq log (200\times 10^{6}) \\
+		\Rightarrow & K \times log 2 \leq log (2\times 10^{8}) \\
+		\Rightarrow & K \times log 2 \leq log 2 + log 10^{8} \\
+		\Rightarrow & K \times log 2 \leq log 2 + 8\times log 10 \\
+		\Rightarrow & K \times log 2 \leq log 2 + 8 \\
+		\Rightarrow & K \leq 1 + \frac{8}{log 2} \\
+		\Rightarrow & K \leq 1 + \frac{8}{0.301} \\
+		\Rightarrow & K \leq 1 + 26.6 \\
+		\Rightarrow & K \leq 27.6 \\
+		\Rightarrow & K \leq 28 \\
+		\Rightarrow & K = 28
+	\end{split}
+	\end{equation}
+
+\end{flushleft}
+
+
+\lstinputlisting[style=Matlab-editor,label={bits},firstnumber=69,linerange={69-81}, caption={Função que obtem o número de bits em \emph{``maximizaF6.m''}}, language={Matlab}]{code/l2/maximizaF6b.m}
+
+\lstinputlisting[label={outputb},linerange={33-42},caption={Saida do programa \emph{maximizaF6b.m}}, language={Matlab}]{code/l2/maximizaF6b.out}
+
+\newpage
+\section*{b.2)}
+
+\begin{flushleft}
+	Gere as curvas referentes ao melhor indivíduo de cada geração e
+	à média dos indivíduos de cada geração. Comente os resultados
+	obtidos.
+
+	Um dos retornos da função \emph{ga} é a variável ``trace''
+	que consiste numa matriz de quatro colunas, onde a primeira
+	coluna é o número da geração por linha, para uma geração
+	igual a 200 teremos uma coluna com valores de 1 a 200, a
+	segunda coluna contém o melhor avaliado a cada
+	geração e a terceira coluna a média dos indivíduos por
+	geração.
+
+\end{flushleft}
+
+
+\lstinputlisting[style=Matlab-editor,label={bits},firstnumber=69,linerange={69-73}, caption={Programa que obtem os gráficos de melhor indivíduo e média por geração em \emph{``maximizaF6b2.m''}}, language={Matlab}]{code/l2/maximizaF6b2.m}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{images/melhorIndividuoACadaGeracao.pdf}
+\caption{Melhor indivíduo de cada geração}
+\label{fig:melhorIndividuoACadaGeracao}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{images/mediaDosIndividuosACadaGeracao.pdf}
+\caption{Média dos indivíduos de cada geração}
+\label{fig:mediaDosIndividuosACadaGeracao}
+\end{figure}
+
+\newpage
+\section*{c)}
+
+\begin{flushleft}
+	Repita o item (b.2) (Programa GA2) para normalized geometric
+	select (q=0,20). Comente os resultados obtidos.
+\end{flushleft}
+
+\lstinputlisting[style=Matlab-editor,label={bits},firstnumber=39,linerange={39-45}, caption={Programa que obtem os gráficos de melhor indivíduo e média por geração em \emph{``maximizaF6c.m''}}, language={Matlab}]{code/l2/maximizaF6c.m}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{images/melhorIndividuoACadaGeracaoC.pdf}
+\caption{Melhor indivíduo de cada geração utilizando seleção por normalização geométrica}
+\label{fig:melhorIndividuoACadaGeracaoC}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{images/mediaDosIndividuosACadaGeracaoC.pdf}
+\caption{Média dos indivíduos de cada geração utilizando seleção por normalização geométrica}
+\label{fig:mediaDosIndividuosACadaGeracaoC}
+\end{figure}
+
+\begin{flushleft}
+	Ao utilizando a seleção por normalização geométrica conseguimos
+	um ganho superior pois a média é maior por geração e atingimos a
+	maximização mais rapidamente.
+\end{flushleft}
 
 \bibliographystyle{plain}
 \bibliography{references}
