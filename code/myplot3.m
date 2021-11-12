@@ -1,4 +1,4 @@
-% Name: code/myplot2.m
+% Name: code/myplot3.m
 % Description:  terceira tentativa
 x = linspace(-100, 100, 1000);
 y = x;
@@ -56,4 +56,3 @@ xlabel('x')
 ylabel('y')
 zlabel('z')
 grid on
-% This is octave file.
