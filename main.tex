@@ -189,14 +189,21 @@ $x = linspace(-100, 100, 1000);$
 \label{fig:plot3_f6}
 \end{figure}
 
-Nesse ponto reduzimos o intervalo de relevância, o domínio, de forma drástica para $[-1,1]$ e mantemos o número de pontos em torno de 1000 pontos.
+\begin{flushleft}
+	Nesse ponto reduzimos o intervalo de relevância, o domínio,
+	de forma drástica para $[-1,1]$ e mantemos o número de
+	pontos em torno de 1000 pontos.
+\end{flushleft}
 
 $x = linspace(-1, 1, 1000);$
 
 \lstinputlisting[label={plot4},caption={Plot 4}, language={Matlab}]{code/myplot4.m}
 
 \newpage
-Mesmo seguindo essas dicas, não obtivemos sucesso na análise gráfica.
+\begin{flushleft}
+	Mesmo seguindo essas dicas, não obtivemos sucesso na análise
+	gráfica.
+\end{flushleft}
 
 \begin{figure}[h!]
 \centering
@@ -205,28 +212,62 @@ Mesmo seguindo essas dicas, não obtivemos sucesso na análise gráfica.
 \label{fig:plot4_f6}
 \end{figure}
 
-Sendo menos preciosista e após vários testes chegamos a uma possível interpretação da curva de superfície com o algorítmos subsequente. Para tanto alteramos o domíneo até o ponto desse ser mais substancialmente indicativo da estrutura espacial de \emph{F6}.
+\begin{flushleft}
+	Sendo menos preciosista e após vários testes chegamos a uma
+	possível interpretação da curva de superfície com o algorítmos
+	subsequente. Para tanto alteramos o domíneo até o ponto desse
+	ser mais substancialmente indicativo da estrutura espacial de
+	\emph{F6}.
+\end{flushleft}
 
 \lstinputlisting[label={plot5},caption={Plot 5}, language={Matlab}]{code/myplot5.m}
 
 \newpage
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=.6]{images/myplot5a.pdf}
-%\includegraphics[ width=\textwidth, keepaspectratio, ]{images/myplot5a.pdf}
-\caption{$X,Y \in [-5, 5]$}
-\label{fig:plot5a_f6}
+\begin{figure}[H]
+	\begin{floatrow}
+		\raggedleft
+		\makebox[0pt]{
+			\ffigbox{
+				\includegraphics[scale = 0.4]{images/myplot5a.pdf}}{
+				\caption{$X,Y \in [-5, 5]$}
+				\label{fig:plot5a_f6}}
+
+			\ffigbox{\includegraphics[scale = 0.4]{images/myplot5b.pdf}}{
+				\caption{$X,Y \in [-10, 10]$}
+				\label{fig:plot5b_f6}}
+		}
+	\end{floatrow}
 \end{figure}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=.5]{images/myplot5b.pdf}
-\caption{$X,Y \in [-10, 10]$}
-\label{fig:plot5b_f6}
-\end{figure}
+
+%\newpage
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=.6]{images/myplot5a.pdf}
+%%\includegraphics[ width=\textwidth, keepaspectratio, ]{images/myplot5a.pdf}
+%\caption{$X,Y \in [-5, 5]$}
+%\label{fig:plot5a_f6}
+%\end{figure}
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=.5]{images/myplot5b.pdf}
+%\caption{$X,Y \in [-10, 10]$}
+%\label{fig:plot5b_f6}
+%\end{figure}
 
 \newpage
-Sendo assim, podemos afirmar que \emph{F6} possui vários máximos locais e ou ótimos locais.
+\begin{flushleft}
+	\textcolor{black}{
+		``
+		Sendo assim, podemos afirmar que \emph{F6} possui vários
+		máximos locais. Formalmente, um ponto máximo local é um
+		ponto no espaço de entrada tal que todas as outras entradas
+		em uma pequena região perto desse ponto produzem valores
+		menores quando aplicadas na função multivariável.
+		''
+	}
+\end{flushleft}
 
 \begin{figure}[h!]
 \centering
@@ -238,13 +279,15 @@ Sendo assim, podemos afirmar que \emph{F6} possui vários máximos locais e ou �
 \newpage
 \section*{b)}
 
-Baseando-se no exemplo fornecido no gaot (binaryExample.m),
-implemente um programa baseado em GA (GA1) para maximizar a
-função f6 com as seguintes características:
+\begin{flushleft}
+	Baseando-se no exemplo fornecido no gaot (binaryExample.m),
+	implemente um programa baseado em GA (GA1) para maximizar a
+	função f6 com as seguintes características:
 
-Antes de mais nada, precisamos instalar a biblioteca no matlab,
-no nosso caso consiste em adicionar a pasta no caminho de
-leitura do programa, conforme mostrado abaixo.
+	Antes de mais nada, precisamos instalar a biblioteca no matlab,
+	no nosso caso consiste em adicionar a pasta no caminho de
+	leitura do programa, conforme mostrado abaixo.
+\end{flushleft}
 
 \lstinputlisting[label={prompt2},caption={Instalando biblioteca gaot}, language={Matlab}]{code/prompt2.m}
 
